@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y bash git ssh \
     autoconf libtool automake g++ make bison python \
     python-dev python3-pip swig ffmpeg subversion
 
-RUN pip3 install --upgrade pip && pip3 install jupyter wget pandas
+RUN pip3 install --upgrade pip && pip3 install jupyter \
+    wget pandas python-Levenshtein
 
 RUN mkdir /cmusphinx
 WORKDIR /cmusphinx
