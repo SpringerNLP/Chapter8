@@ -3,13 +3,17 @@ This is a docker wrapper around [Kaldi](http://kaldi-asr.org/).
 
 ## Docker
 ```
-docker pull jimmywhitaker/kaldi-docker
-docker run -v <local data directory>:/data/ -p 8888:8888 jimmywhitaker/kaldi-docker /bin/bash
+docker run -v <local data directory>:/data/ -p 8888:8888 springernlp:chapter_8k:latest /bin/bash
+```
+
+If a GPU is available, run: 
+```
+docker run -it --runtime=nvidia -v /data/:/data/ -p 8888:8888 springernlp/chapter8k:gpu /bin/bash
 ```
 
 Start the python notebook.
 ```
-jupyter notebook
+jupyter notebook --no-browser --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token=''
 ```
 Go to [localhost:8888](http://localhost:8888).
 
@@ -28,12 +32,7 @@ The Dockerfile will add this to the image build.
 
 Warning: If you are building this image from scratch, it can take a very long time (to the tune of an hour).
 ```
-docker build -t jimmywhitaker/kaldi-docker .
-```
-
-If a GPU is available, run: 
-```
-docker run -it --runtime=nvidia -v /data/:/data/ -p 8888:8888 jimmywhitaker/kaldi-docker:gpu /bin/bash
+docker build -t chapter_8k:latest .
 ```
 
 ## Running the Common Voice example
